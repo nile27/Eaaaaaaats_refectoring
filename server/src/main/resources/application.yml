@@ -11,15 +11,14 @@ logging:
 cloud:
   aws:
     credentials:
-      access-key: AKIAVZCEWUKJ6A52AAOQ
-      secret-key: 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
+      access-key: AKIAY6Z7EA6Y5R66ELJ3
+      secret-key: 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
     s3:
-      bucket: main022
+      bucket: main22
     region:
       static: ap-northeast-2
     stack:
       auto: false
-
 
 spring:
   servlet:
@@ -35,9 +34,9 @@ spring:
     url: jdbc:h2:mem:test
 #  datasource:
 #    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/main022?serverTimezone=Asia/Seoul
-#    username: root
-#    password: root
+#    url: jdbc:mysql://main.cfjpwofewd2x.ap-northeast-2.rds.amazonaws.com:13306/main?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&createDatabaseIfNotExist=true
+#    username: admin
+#    password: admin123
   jpa:
     defer-datasource-initialization: true
     hibernate.ddl-auto: create
@@ -54,8 +53,6 @@ spring:
 #  redis:
 #    host: localhost  # 배포 시 ec2 주소 사용
 #    port: 6379
-
-
 
 jwt:
   key: abcd123456789123456789123456789abcdabcd
