@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { api } from "../../Util/api";
-import { useParams } from "react-router-dom";
 
 const Container = styled.div`
   margin: auto;
@@ -24,30 +21,7 @@ const Intro = styled.div`
   margin-bottom: 60px;
 `;
 
-const StoreIntro = () => {
-  const [data, setData] = useState({
-    image: "",
-    content: "",
-  });
-  const { res_id } = useParams();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get(`/restaurants/${res_id}/detail`);
-        const { image, content } = response.data;
-        const newData = {
-          image,
-          content,
-        };
-        setData(newData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
-
+const StoreIntro = ({ data }) => {
   return (
     <Container>
       <Image src={data.image} />

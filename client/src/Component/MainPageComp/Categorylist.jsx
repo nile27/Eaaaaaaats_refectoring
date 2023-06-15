@@ -117,6 +117,7 @@ const Categorylist = () => {
   const handleCategoryClick = async (name) => {
     setSearchKeyword(name);
     navi(`/itemlist?search=${name}`);
+    setSearchKeyword("");
   };
 
   useEffect(() => {

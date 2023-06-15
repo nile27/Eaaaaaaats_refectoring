@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.div``;
 const Menu = styled.div`
+  width: 100;
   margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
@@ -16,7 +17,7 @@ const Menu = styled.div`
     content: "";
     position: absolute;
     top: 50%;
-    left: 25%;
+    left: 30%;
     width: 319px;
 
     height: 1px;

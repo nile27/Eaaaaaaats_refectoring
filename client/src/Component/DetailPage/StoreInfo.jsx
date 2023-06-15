@@ -2,11 +2,10 @@ import styled from "styled-components";
 import MenuItem from "./MenuItem";
 import Button from "./../style/StyleButton";
 import Modal from "../Modal";
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import memberState from "../../state/atoms/SignAtom";
-import { api } from "../../Util/api";
 
 const Container = styled.div`
   display: flex;
@@ -45,6 +44,11 @@ const MoreMenu = styled.button`
   background-color: transparent;
 `;
 
+const Menudiv = styled.div`
+  width: auto;
+  min-width: 650px;
+`;
+
 const Modify = styled.div`
   width: 1200px;
   display: flex;
@@ -70,49 +74,17 @@ const Modify = styled.div`
   }
 `;
 
-const StoreInfo = () => {
+const StoreInfo = ({ data }) => {
   const navigate = useNavigate();
-  const { res_id } = useParams();
   const onClickModify = () => {
-    navigate(`/editstore/${res_id}`);
+    navigate(`/editstore/${data.restaurantId}`);
   };
 
   const [modal, setModal] = useState(false);
   const showModal = () => {
     setModal(!modal);
   };
-
   const member = useRecoilValue(memberState);
-
-  const [data, setData] = useState({
-    restaurantId: 0,
-    streetAddress: "",
-    detailAddress: "",
-    latitude: 0,
-    longitude: 0,
-    tel: "",
-    category: "",
-    open_time: "",
-    createdAt: "",
-    modifiedAt: "",
-    member: {
-      memberId: 0,
-      email: "",
-    },
-  });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get(`/restaurants/${res_id}/detail`);
-        const data = response.data;
-        setData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
 
   return (
     <>
@@ -136,10 +108,10 @@ const StoreInfo = () => {
           </InfoItem>
         </InfoList>
         <MenuList>
-          <div>
+          <Menudiv>
             <InfoName>메뉴</InfoName>
             <MenuItem menu={data.menu} />
-          </div>
+          </Menudiv>
           <div>
             {modal ? <Modal menu={data.menu} showModal={showModal} /> : null}
           </div>
