@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { api } from "../Util/api";
 import { useSetRecoilState } from "recoil";
 import { reviewDataAtom } from "../state/atoms/reviewDataAtom";
+import { reviewHeader } from "../state/atoms/ReviewHeader";
 
 const Container = styled.div`
   display: flex;
@@ -18,6 +19,7 @@ const Container = styled.div`
 const DetailPage = () => {
   const { res_id } = useParams();
   const setReviewData = useSetRecoilState(reviewDataAtom);
+  const setReviewHeader = useSetRecoilState(reviewHeader);
   const [data, setData] = useState({
     restaurantId: "",
     restaurantName: "",
@@ -48,6 +50,7 @@ const DetailPage = () => {
       .then((res) => {
         setData(res.data);
         setReviewData(res.data.reviews);
+        setReviewHeader(res.data);
       })
       .catch((err) => console.error(err));
   }, []);

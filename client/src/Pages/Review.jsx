@@ -50,6 +50,7 @@ const Review = () => {
   };
   return (
     <BasicContainer className="Basic-Container">
+      {console.log(res_id)}
       <ResInfo />
       <ReviewInfo reviewData={ReviewData} setReviewData={setReviewData} />
       <ButtonContainer className="Button-Container">

@@ -90,7 +90,6 @@ const StoreHead = ({ data, setData }) => {
         await api.delete(`/favorites/${endpoint}`);
         const res = await api.get(`members/mypage`);
         setData({ ...data, totalFavorite: data.totalFavorite - 1 });
-
         setMember({ ...member, favorites: res.data.favorites });
       }
       setHeartIcon(!heartIcon);
