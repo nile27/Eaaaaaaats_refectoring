@@ -80,7 +80,7 @@ const StoreHead = ({ data, setData }) => {
         navigate("/login");
         return;
       }
-      if (!heartIcon && member.memberId) {
+      if (!heartIcon) {
         await api.post(`/favorites/restaurant/${data.restaurantId}`);
         const res = await api.get(`members/mypage`);
         setData({ ...data, totalFavorite: data.totalFavorite + 1 });
@@ -89,7 +89,14 @@ const StoreHead = ({ data, setData }) => {
         const endpoint = deleteFunc(data.favorites);
         await api.delete(`/favorites/${endpoint}`);
         const res = await api.get(`members/mypage`);
-        setData({ ...data, totalFavorite: data.totalFavorite - 1 });
+        const response = await api.get(
+          `/restaurants/${data.restaurantId}/detail`,
+        );
+        setData({
+          ...data,
+          totalFavorite: data.totalFavorite - 1,
+          favorites: response.data.favorites,
+        });
         setMember({ ...member, favorites: res.data.favorites });
       }
       setHeartIcon(!heartIcon);

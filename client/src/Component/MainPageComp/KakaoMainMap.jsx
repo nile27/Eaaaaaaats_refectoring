@@ -95,6 +95,8 @@ export default function KakaoMap() {
     streetAddress: "",
     open_time: "",
     tel: "",
+    latitude: 0,
+    longitude: 0,
   });
   const markerdata = useRecoilValue(RestaurantState);
   const memberData = useRecoilValue(memberState);
@@ -110,7 +112,10 @@ export default function KakaoMap() {
 
   const mapscript = () => {
     let options = {
-      center: new kakao.maps.LatLng(memberData.latitude, memberData.longitude),
+      center: new kakao.maps.LatLng(
+        info.latitude || memberData.latitude,
+        info.longitude || memberData.longitude,
+      ),
       level: 3,
     };
 
