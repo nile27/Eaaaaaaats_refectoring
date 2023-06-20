@@ -111,18 +111,18 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
     }
 
     private URI createURI(String accessToken, String refreshToken) {
-        MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
-        queryParams.add("access_token", accessToken);
-        queryParams.add("refresh_token", refreshToken);
+//        MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
+//        queryParams.add("access_token", accessToken);
+//        queryParams.add("refresh_token", refreshToken);
 
         return UriComponentsBuilder
                 .newInstance()
                 .scheme("http")
                 .host("ec2-13-209-77-62.ap-northeast-2.compute.amazonaws.com")
-                .port(80)
+//                .port(80)
 //                .port(3000)
-                .path("login")
-                .queryParams(queryParams)
+//                .path("login")
+//                .queryParams(queryParams)
                 .build()
                 .toUri();
     }
