@@ -17,6 +17,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -72,10 +73,10 @@ public class SecurityConfiguration {
 //                                .antMatchers(HttpMethod.GET, "/*/members/**").hasAnyRole("USER", "ADMIN")
 //                                .antMatchers(HttpMethod.DELETE, "/*/members/**").hasRole("USER")
 //                                .anyRequest().permitAll() // 위에 설정한 요청 외의 모든 요청 허용
+                )
+                .oauth2Login(oauth2 -> oauth2
+                        .successHandler(new OAuth2MemberSuccessHandler(jwtTokenizer, authorityUtils, memberRepository))  // OAuth 2 인증이 성공한 뒤 실행되는 핸들러를 추가
                 );
-//                .oauth2Login(oauth2 -> oauth2
-//                        .successHandler(new OAuth2MemberSuccessHandler(jwtTokenizer, authorityUtils, memberRepository))  // OAuth 2 인증이 성공한 뒤 실행되는 핸들러를 추가
-//                );
         return http.build();
     }
 
@@ -115,8 +116,8 @@ public class SecurityConfiguration {
             JwtVerificationFilter jwtVerificationFilter = new JwtVerificationFilter(jwtTokenizer, authorityUtils, memberAuthenticationEntryPoint);
 
             builder.addFilter(jwtAuthenticationFilter)
-                    .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class);
-//                    .addFilterAfter(jwtVerificationFilter, OAuth2LoginAuthenticationFilter.class); // OAuth2로그인 성공 시 jwtVerificationFilter 호출
+                    .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class)
+                    .addFilterAfter(jwtVerificationFilter, OAuth2LoginAuthenticationFilter.class); // OAuth2로그인 성공 시 jwtVerificationFilter 호출
         }
     }
 
