@@ -1,7 +1,9 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=61D373&fontColor=ffffff&height=200&section=header&text=Eaaaaaaats&fontSize=70&animation=fadeIn&fontAlignY=40&desc=-codea-&descSize=30&width=100)
 
-# Eaaaaaaaats 
+# Eaaaaaaaats
+
 ### “뭐 먹지?”, “한 끼 먹어도 제대로 먹어야지", “이번 주 맛집 탐방은 어디가지….??”
+
 매일 매일 이런 고민들을 하신 적 있으신가요? 매일 한 끼 식사 무엇을 먹을지 매번 고민은 되고, 한 끼를 대충 때우기에는 돈은
 아깝고,취미가 맛집 탐방 인분들에게는 매번 어디로 갈지에 대한 고민을 해결해 줄 웹사이트 Eaaaaaaats(잇츠) 입니다. <br>
 
@@ -203,8 +205,8 @@
 </div>
 <br>
 
-  
 ## 🛠Communication 🛠
+
 <div align=left>
  <img src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white">
 <img src="https://img.shields.io/badge/kakaotalk-FFCD00?style=for-the-badge&logo=kakaotalk&logoColor=white" />
@@ -214,7 +216,9 @@
 <br>
 
 # 깃 컨벤션
+
 ## Commit message 7가지 규칙
+
 1. 제목과 본문을 한 줄 띄어 구분
 2. 제목은 50자 이내
 3. 제목 첫 글자는 대문자
@@ -224,17 +228,27 @@
 7. 본문은 어떻게 보다 무엇을, 왜에 대하여 설명
 
 ## Type
-+ `feat` : 새로운 기능 추가, 기존의 기능을 요구 사항에 맞추어 수정
-+ `fix` : 기능에 대한 버그 수정
-+ `build` : 빌드 관련 수정
-+ `chore` : 패키지 매니저 수정, 그 외 기타 수정 ex) .gitignore
-+ `ci` : CI 관련 설정 수정
-+ `docs` : 문서(주석) 수정
-+ `style` : 코드 스타일, 포맷팅에 대한 수정
-+ `refactor` : 기능의 변화가 아닌 코드 리팩터링 ex) 변수 이름 변경
-+ `test` : 테스트 코드 추가/수정
-+ `release` : 버전 릴리즈
-+ `remove`: 파일을 삭제만 한 경우
-+ `rename`: 설정을 변경(코드의 수정 없이)
-	
 
+- `feat` : 새로운 기능 추가, 기존의 기능을 요구 사항에 맞추어 수정
+- `fix` : 기능에 대한 버그 수정
+- `build` : 빌드 관련 수정
+- `chore` : 패키지 매니저 수정, 그 외 기타 수정 ex) .gitignore
+- `ci` : CI 관련 설정 수정
+- `docs` : 문서(주석) 수정
+- `style` : 코드 스타일, 포맷팅에 대한 수정
+- `refactor` : 기능의 변화가 아닌 코드 리팩터링 ex) 변수 이름 변경
+- `test` : 테스트 코드 추가/수정
+- `release` : 버전 릴리즈
+- `remove`: 파일을 삭제만 한 경우
+- `rename`: 설정을 변경(코드의 수정 없이)
+
+# 리펙토링 기록지 (회의 날 기준)
+
+## `06.19`
+
+- 디테일 상세페이지 조회 수 및 즐겨찾기 delete 버그 수정
+- 메인페이지 카테고리 버그 수정
+  (카테고리 선택 후 데이터 남은 수정)
+- 메인페이지 가게 선택 후 지도 위치 초기화 수정
+  ( 가게 선택 후 가게 위치로 이동)
+- OAuth
