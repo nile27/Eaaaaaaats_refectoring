@@ -5,11 +5,12 @@ import X from "../Component/style/img/x.svg";
 import List from "./Menu";
 
 const Container = styled.div`
-  width: fillpx;
-  height: fill;
+  width: auto;
+  min-width: 600px;
+  height: auto;
   z-index: 99;
   position: absolute;
-  top: 15%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: #fefefe;
@@ -19,9 +20,10 @@ const Container = styled.div`
 `;
 
 const ModalContainer = styled.button`
-  width: 200%;
+  width: auto;
   height: 200%;
   z-index: 90;
+
   position: absolute;
   transform: translate(-50%, -50%);
   background-color: transparent;
@@ -42,7 +44,8 @@ const Hdiv = styled.div`
   margin-bottom: 10px;
 `;
 const Containerdiv = styled.div`
-  width: 100%;
+  width: auto;
+  min-width: 600px;
   height: auto;
   padding: 10px;
   display: flex;
@@ -64,8 +67,6 @@ export default function Modal({ menu, showModal }) {
             return <List menu={menu} i={item * 10} key={idx} />;
           })}
         </Containerdiv>
-
-        <List menu={menu} />
       </Container>
     </>
   );

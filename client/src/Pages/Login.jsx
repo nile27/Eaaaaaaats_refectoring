@@ -7,7 +7,7 @@ import isLoginState from "../state/atoms/IsLoginAtom";
 import Button from "../Component/style/StyleButton";
 import Input from "../Component/style/StyleInput";
 import Logo from "../Component/style/img/Eaaaaaaats.svg";
-
+import Auth from "../Component/Auth";
 import { api } from "../Util/api";
 
 const Main = styled.div`
@@ -60,6 +60,11 @@ const Errspan = styled.div`
   color: var(--red-500);
   font-size: 14px;
 `;
+const Authdiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+`;
 
 export default function Login() {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
@@ -71,6 +76,12 @@ export default function Login() {
     password: "",
   });
   const navi = useNavigate();
+
+  const googleLogin = () => {
+    const google = `${process.env.REACT_APP_GOOGLE_API_URL}`;
+
+    window.location.href = google;
+  };
 
   const handleInputValue = (key) => (e) => {
     setLoginMember({ ...Loginmember, [key]: e.target.value });
@@ -196,6 +207,12 @@ export default function Login() {
             </Link>
           </Btndiv>
         </Container>
+        <Authdiv>
+          <Auth Btnstyle="google" onClick={googleLogin}>
+            구글로 로그인
+          </Auth>
+          <Auth Btnstyle="kakao">{/* <a href="#">카카오로 로그인</a> */}</Auth>
+        </Authdiv>
       </Main>
     </>
   );
