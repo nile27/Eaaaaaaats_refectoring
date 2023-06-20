@@ -121,7 +121,7 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
                 .host("ec2-13-209-77-62.ap-northeast-2.compute.amazonaws.com")
                 .port(80)
 //                .port(3000)
-                .path("login/oauth2/google")
+                .path("login")
                 .queryParams(queryParams)
                 .build()
                 .toUri();
