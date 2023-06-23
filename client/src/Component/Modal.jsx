@@ -30,18 +30,18 @@ const ModalContainer = styled.button`
 `;
 
 const XBtn = styled.button`
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   background-color: transparent;
   background-image: url(${X});
   background-size: cover;
 `;
 const Hdiv = styled.div`
   width: 100%;
-  height: 30px;
+  height: 20px;
   display: flex;
   justify-content: right;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `;
 const Containerdiv = styled.div`
   width: auto;
