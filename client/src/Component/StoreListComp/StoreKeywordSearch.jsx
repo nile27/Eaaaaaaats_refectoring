@@ -107,6 +107,7 @@ const StoreKeywordSearch = () => {
 
   useEffect(() => {
     setSearchInputState("");
+    refreshKeywords();
   }, []);
 
   const handleFormSubmit = (event) => {
@@ -118,6 +119,7 @@ const StoreKeywordSearch = () => {
 
   const handleInputChange = (event) => {
     setSearchInput(event.target.value);
+    setSearchInputState(searchTagInput);
   };
 
   const handleKeywordClick = (keyword) => {
@@ -130,9 +132,6 @@ const StoreKeywordSearch = () => {
     );
   };
 
-  useEffect(() => {
-    refreshKeywords();
-  }, []);
   const deleteKeywords = () => {
     setSearchInputState("");
   };

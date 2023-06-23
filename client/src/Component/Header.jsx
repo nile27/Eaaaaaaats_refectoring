@@ -161,11 +161,11 @@ const Header = () => {
   };
 
   const handleLinkStoreList = () => {
+    setSearchKeywordState("");
     if (sessionStorage.getItem("Authorization")) {
       api
         .get("/members/mypage")
         .then((res) => {
-          setMember(res.data);
           setMember({
             ...member,
             streetAddress: res.data.address.streetAddress,
@@ -176,7 +176,6 @@ const Header = () => {
         })
         .catch((err) => console.log(err));
     }
-    setSearchKeywordState("");
     navi(`/itemlist`);
   };
   return (

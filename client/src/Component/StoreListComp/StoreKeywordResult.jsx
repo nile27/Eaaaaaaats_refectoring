@@ -34,6 +34,7 @@ const StoreKeywordResult = () => {
 
   useEffect(() => {
     const encodedCategoryName = encodeURIComponent(searchKeyword);
+    console.log(searchKeyword);
     const fetchData = async () => {
       try {
         const refreshPageData = await api.get(
@@ -41,9 +42,9 @@ const StoreKeywordResult = () => {
         );
         setSearchResultsState(refreshPageData.data);
 
-        if (encodedCategoryName) {
-          nav(`/itemlist?search=${encodedCategoryName}`);
-        }
+        // if (encodedCategoryName) {
+        //   nav(`/itemlist?search=${encodedCategoryName}`);
+        // }
 
         setUserDataFavor(member.favorites);
       } catch (error) {
