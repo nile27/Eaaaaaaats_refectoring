@@ -20,13 +20,15 @@ const GlobalStyles = createGlobalStyle`
     padding: 10px 0;
     display: flex;
     justify-content: center;
+    
   }
   
   body {
     background: #FEFEFE;
     width: 100%;
-  
     position: ${(prop) => prop.posi || "none"};
+    overflow:${(prop) => prop.overflow || "none"};
+    top: ${(prop) => prop.top || "none"};
     display: flex;
     justify-content: center;
   }
