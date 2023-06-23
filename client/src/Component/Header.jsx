@@ -101,6 +101,11 @@ const Frameicon = styled.img`
   width: 17px;
   height: 17px;
   margin: 0px 5px;
+  @media screen and (max-width: 840px) {
+    width: 0;
+    flex-grow: 0;
+    background-image: none;
+  }
 `;
 
 const Header = () => {
