@@ -45,17 +45,26 @@ spring:
     properties:
       hibernate.format_sql: true
       hibernate.default_batch_fetch_size: 100
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          google:
-#            client-id:
-#            clientSecret: ${GoogleClientSecret}
-#            scope:
-#              - email
-#              - profile
-#  sql.init.mode: always
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 374180078488-v6mh6ruhpsr5ja2vnmghslqvf28jb2mg.apps.googleusercontent.com
+            clientSecret: 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
+            scope:
+              - email
+              - profile
+
+#          kakao:
+#            client-id: 2badaf984a50ed7e3b8f83534a70c397
+#            redirect-uri: http://ec2-13-209-77-62.ap-northeast-2.compute.amazonaws.com/login/oauth2/kakao
+#            client-authentication-method: POST
+#            authorization-grant-type: authorization_code
+#            scope: profile_nickname, account_email
+#            client-name: Kakao
+
+  sql.init.mode: always
 mail:
   address:
     admin: admin@admin

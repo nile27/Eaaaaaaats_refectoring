@@ -37,6 +37,10 @@ spring:
 #    url: jdbc:mysql://main.cfjpwofewd2x.ap-northeast-2.rds.amazonaws.com:13306/main?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&createDatabaseIfNotExist=true
 #    username: admin
 #    password: admin123
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    log-request-details: true
   jpa:
     defer-datasource-initialization: true
     hibernate.ddl-auto: create
@@ -48,7 +52,26 @@ spring:
         format_sql: true
         use_sql_comments: true
         default_batch_fetch_size: 100
-
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 374180078488-v6mh6ruhpsr5ja2vnmghslqvf28jb2mg.apps.googleusercontent.com
+            clientSecret: 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
+            scope:
+              - email
+              - profile
+#          Kakao:
+#            client-id: 2badaf984a50ed7e3b8f83534a70c397
+#            client-secret: <your secret>
+#            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+#            authorization-grant-type: authorization_code
+#            client-authentication-method: POST
+#            client-name: Kakao
+#            scope:
+#              - profile
+#              - account_email
 
 #  redis:
 #    host: localhost  # 배포 시 ec2 주소 사용

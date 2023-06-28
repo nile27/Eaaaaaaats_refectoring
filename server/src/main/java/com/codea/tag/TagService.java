@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,10 +31,8 @@ public class TagService {
     public Tag findTag(long tagId){
         return findVerifiedTag(tagId);
     }
-    public Page<Tag> findTags(int page, int size){
-       return  tagRepository.findAll(PageRequest.of(page, size,
-               Sort.by("tagId").descending()));
-
+    public List<Tag> findTags(){
+       return tagRepository.findAll();
     }
     public void deleteTag(long tagId){
         Tag findTag = findVerifiedTag(tagId);
