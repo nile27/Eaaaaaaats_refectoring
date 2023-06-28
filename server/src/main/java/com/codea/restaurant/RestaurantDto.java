@@ -1,6 +1,9 @@
 package com.codea.restaurant;
 
 import com.codea.Menu.MenuDto;
+import com.codea.address.Address;
+import com.codea.address.AddressDto;
+import com.codea.category.Category;
 import com.codea.category.CategoryDto;
 import com.codea.favorite.Favorite;
 import com.codea.favorite.FavoriteDto;
@@ -91,4 +94,23 @@ public class RestaurantDto {
         private MemberDto.RestaurantResponse member;
     }
 
+
+    @Getter
+    public static class MyPageResponse {
+        private long restaurantId;
+        private String restaurantName;
+        private String category;
+        private String streetAddress;
+        private String detailAddress;
+
+        public MyPageResponse(Restaurant restaurant) {
+            this.restaurantId = restaurant.getRestaurantId();
+            this.restaurantName = restaurant.getRestaurantName();
+            this.category = restaurant.getCategory().getName();
+            this.streetAddress = restaurant.getAddress().getStreetAddress();
+            this.detailAddress = restaurant.getDetailAddress();
+        }
+
+
+    }
 }

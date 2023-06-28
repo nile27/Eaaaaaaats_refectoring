@@ -10,4 +10,3 @@ INSERT INTO CATEGORY (category_id, name) VALUES(9, '퓨전 요리');
 INSERT INTO CATEGORY (category_id, name) VALUES(10, '채식');
 INSERT INTO CATEGORY (category_id, name) VALUES(11, '해물');
 INSERT INTO CATEGORY (category_id, name) VALUES(12, '고기');
-
