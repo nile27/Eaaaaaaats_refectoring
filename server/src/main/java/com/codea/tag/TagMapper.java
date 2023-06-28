@@ -10,5 +10,5 @@ import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface TagMapper {
-    List<TagDto.Response> tagToTagResponseDtos(List<Tag> tag);
+    List<TagDto.TagResponse> tagToTagResponseDtos(List<Tag> tag);
 }

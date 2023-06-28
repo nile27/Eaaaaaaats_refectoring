@@ -17,42 +17,40 @@ public class TagService {
         this.tagRepository = tagRepository;
     }
 
-    public Tag createTag(Tag tag){
-       verifyExistsName(tag.getName());
-
-       return tagRepository.save(tag);
-    }
-    public Tag updateTag(Tag tag){
-       Tag findTag = findVerifiedTag(tag.getTagId());
-       Optional.ofNullable(tag.getName())
-               .ifPresent(name-> findTag.setName(name));
-       return tagRepository.save(findTag);
-    }
-    public Tag findTag(long tagId){
-        return findVerifiedTag(tagId);
-    }
+//    public Tag createTag(Tag tag){
+//       verifyExistsName(tag.getName());
+//
+//       return tagRepository.save(tag);
+//    }
+//    public Tag updateTag(Tag tag){
+//       Tag findTag = findVerifiedTag(tag.getTagId());
+//       Optional.ofNullable(tag.getName())
+//               .ifPresent(name-> findTag.setName(name));
+//       return tagRepository.save(findTag);
+//    }
+//    public Tag findTag(long tagId){
+//        return findVerifiedTag(tagId);
+//    }
     public List<Tag> findTags(){
        return tagRepository.findAll();
     }
-    public void deleteTag(long tagId){
-        Tag findTag = findVerifiedTag(tagId);
-
-        tagRepository.delete(findTag);
-    }
-    public Tag findVerifiedTag(long tagId){
-        Optional<Tag> optionalTag =
-                tagRepository.findById(tagId);
-        Tag findTag =
-                optionalTag.orElseThrow(()->
-                        new BusinessLogicException(ExceptionCode.TAG_NOT_FOUND));
-        return findTag;
-    }
-    private void verifyExistsName(String name){
-        Optional<Tag> tag = tagRepository.findByName(name);
-        if(tag.isPresent())
-            throw new BusinessLogicException(ExceptionCode.TAG_EXISTS);
-    }
-
-
+//    public void deleteTag(long tagId){
+//        Tag findTag = findVerifiedTag(tagId);
+//
+//        tagRepository.delete(findTag);
+//    }
+//    public Tag findVerifiedTag(long tagId){
+//        Optional<Tag> optionalTag =
+//                tagRepository.findById(tagId);
+//        Tag findTag =
+//                optionalTag.orElseThrow(()->
+//                        new BusinessLogicException(ExceptionCode.TAG_NOT_FOUND));
+//        return findTag;
+//    }
+//    private void verifyExistsName(String name){
+//        Optional<Tag> tag = tagRepository.findByName(name);
+//        if(tag.isPresent())
+//            throw new BusinessLogicException(ExceptionCode.TAG_EXISTS);
+//    }
 
 }
