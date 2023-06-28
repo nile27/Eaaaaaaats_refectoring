@@ -95,21 +95,21 @@ public class RestaurantDto {
     }
 
 
-    @Getter
-    public static class MyPageResponse {
-        private long restaurantId;
-        private String restaurantName;
-        private String category;
-        private String streetAddress;
-        private String detailAddress;
-
-        public MyPageResponse(Restaurant restaurant) {
-            this.restaurantId = restaurant.getRestaurantId();
-            this.restaurantName = restaurant.getRestaurantName();
-            this.category = restaurant.getCategory().getName();
-            this.streetAddress = restaurant.getAddress().getStreetAddress();
-            this.detailAddress = restaurant.getDetailAddress();
-        }
-
-    }
+//    @Getter
+//    public static class MyPageResponse {
+//        private long restaurantId;
+//        private String restaurantName;
+//        private String category;
+//        private String streetAddress;
+//        private String detailAddress;
+//
+//        public MyPageResponse(Restaurant restaurant) {
+//            this.restaurantId = restaurant.getRestaurantId();
+//            this.restaurantName = restaurant.getRestaurantName();
+//            this.category = restaurant.getCategory().getName();
+//            this.streetAddress = restaurant.getAddress().getStreetAddress();
+//            this.detailAddress = restaurant.getDetailAddress();
+//        }
+//
+//    }
 }
