@@ -69,7 +69,7 @@ public class MemberDto {
         private String image;
         private int favoriteCount;
         private Address address;
-        private List<RestaurantDto.MyPageResponse> restaurants;
+//        private List<RestaurantDto.MyPageResponse> restaurants;
     }
 
     @Getter
