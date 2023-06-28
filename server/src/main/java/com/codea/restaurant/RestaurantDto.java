@@ -111,6 +111,5 @@ public class RestaurantDto {
             this.detailAddress = restaurant.getDetailAddress();
         }
 
-
     }
 }
