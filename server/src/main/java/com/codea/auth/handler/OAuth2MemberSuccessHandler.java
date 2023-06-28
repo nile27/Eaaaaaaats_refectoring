@@ -119,10 +119,10 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
                 .newInstance()
                 .scheme("http")
                 .host("ec2-13-125-232-30.ap-northeast-2.compute.amazonaws.com")
-    //            .host("localhost")
+       //         .host("localhost")
                 .port(80)
 //                .port(3000)
-                .path("oauth2")
+                .path("login/oauth2/code/google")
                 .queryParams(queryParams)
                 .build()
                 .toUri();
