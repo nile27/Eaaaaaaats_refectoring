@@ -51,7 +51,7 @@ public class TagController {
     @GetMapping
     public ResponseEntity getTags(){
         List<Tag> tags = tagService.findTags();
-        return new ResponseEntity<>(tags, HttpStatus.OK);
+        return new ResponseEntity<>(tagMapper.tagToTagResponseDtos(tags), HttpStatus.OK);
     }
 //    @DeleteMapping("/{tag-id}")
 //    public ResponseEntity deleteTag(@PathVariable("tag-id") @Positive long tagId){
