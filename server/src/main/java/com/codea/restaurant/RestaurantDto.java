@@ -110,6 +110,5 @@ public class RestaurantDto {
 //            this.streetAddress = restaurant.getAddress().getStreetAddress();
 //            this.detailAddress = restaurant.getDetailAddress();
 //        }
-//
 //    }
 }
