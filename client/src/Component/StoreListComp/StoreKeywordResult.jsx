@@ -5,54 +5,25 @@ import { api } from "../../Util/api";
 import ReactPaginate from "react-paginate";
 import ImgBtn from "../style/ImgBtn";
 import styled from "styled-components";
-import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
-import {
-  searchResultsState,
-  searchKeywordState,
-} from "../../state/atoms/SearchStateAtom";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { searchResultsState } from "../../state/atoms/SearchStateAtom";
 import { searchStateTag } from "../../state/atoms/SearchStateTagAtom";
 import memberState from "../../state/atoms/SignAtom";
 
 const NoResult = () => <div>검색결과가 없습니다</div>;
-const StoreKeywordResult = () => {
+const StoreKeywordResult = ({ userDataFavor, setUserDataFavor }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const resultsPerPage = 4;
   const [isHeartActive, setIsHeartActive] = useState(false);
   const [currentFilter, setCurrentFilter] = useState("createdAt");
   const [noResult, setNoResult] = useState(false);
-  const [userDataFavor, setUserDataFavor] = useState([]);
   const [stores, setStores] = useState([]);
   const [member, setMember] = useRecoilState(memberState);
-  const searchKeyword = useRecoilValue(searchKeywordState);
-
   const results = useRecoilValue(searchResultsState);
-  const setSearchResultsState = useSetRecoilState(searchResultsState);
 
   const searchTagResults = useRecoilValue(searchStateTag);
 
   const nav = useNavigate();
-
-  useEffect(() => {
-    const encodedCategoryName = encodeURIComponent(searchKeyword);
-    console.log(searchKeyword);
-    const fetchData = async () => {
-      try {
-        const refreshPageData = await api.get(
-          `/restaurants/search?keyword=${encodedCategoryName}`,
-        );
-        setSearchResultsState(refreshPageData.data);
-
-        // if (encodedCategoryName) {
-        //   nav(`/itemlist?search=${encodedCategoryName}`);
-        // }
-
-        setUserDataFavor(member.favorites);
-      } catch (error) {
-        console.error("에러", error);
-      }
-    };
-    fetchData();
-  }, []);
 
   const handleButtonClick = async (restaurantId) => {
     try {

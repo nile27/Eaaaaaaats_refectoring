@@ -100,30 +100,29 @@ const HotKeyword = styled.div`
 `;
 
 const StoreKeywordSearch = () => {
-  const [keywords] = useRecoilState(keywordsAtom);
   const [searchTagInput, setSearchInput] = useState("");
   const [randomKeywords, setRandomKeywords] = useState([]);
   const setSearchInputState = useSetRecoilState(searchInputState);
+  const [keywords] = useRecoilState(keywordsAtom);
 
   useEffect(() => {
     setSearchInputState("");
     refreshKeywords();
+    keywords.length === 0 ? console.log("없음") : console.log("dlda");
   }, []);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     setSearchInputState(searchTagInput);
-
-    setSearchInput("");
   };
 
   const handleInputChange = (event) => {
     setSearchInput(event.target.value);
-    setSearchInputState(searchTagInput);
   };
 
   const handleKeywordClick = (keyword) => {
     setSearchInputState(keyword);
+    setSearchInput(keyword);
   };
 
   const refreshKeywords = () => {
@@ -140,15 +139,15 @@ const StoreKeywordSearch = () => {
       <StoreKeywordBox>
         <KeywordBoxLeftArea>
           <Title>필요한 태그를 검색해주세요</Title>
-          <FormArea onSubmit={handleFormSubmit}>
+          <FormArea>
             <Input
               type="text"
               placeholder="원하는 키워드가 있나요?(ex.한식, 중식, ...)"
               value={searchTagInput}
               onChange={handleInputChange}
             />
-            <SubmitBtn>검색하기</SubmitBtn>
-            <SubmitBtn onClick={deleteKeywords}>태그삭제</SubmitBtn>
+            <SubmitBtn onClick={handleFormSubmit}>검색하기</SubmitBtn>
+            <SubmitBtn onClick={deleteKeywords}>초기화</SubmitBtn>
           </FormArea>
           <div className="hotHeaderWrap">
             <Title>인기 태그로 찾기</Title>
