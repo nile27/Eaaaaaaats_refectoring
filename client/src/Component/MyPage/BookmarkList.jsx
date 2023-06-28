@@ -39,6 +39,7 @@ const BookmarkList = () => {
     const fetchData = async () => {
       try {
         const response = await api.get("members/mypage");
+        console.log(response.data);
         setData(response.data.favorites);
         setSlice(response.data.favorites.slice(0, 6));
       } catch (error) {

@@ -92,6 +92,17 @@ const SubmitBtn = styled.button`
     color: var(--eatsgreen);
   }
 `;
+
+const ReBtn = styled.button`
+  width: 100px;
+  height: 41px;
+  border-radius: 0 10px 10px 0;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: white;
+  color: var(--black-450);
+`;
 /** 박스 내부 인기키워드 묶음 */
 const HotKeyword = styled.div`
   display: flex;
@@ -108,7 +119,6 @@ const StoreKeywordSearch = () => {
   useEffect(() => {
     setSearchInputState("");
     refreshKeywords();
-    keywords.length === 0 ? console.log("없음") : console.log("dlda");
   }, []);
 
   const handleFormSubmit = (event) => {
@@ -126,8 +136,9 @@ const StoreKeywordSearch = () => {
   };
 
   const refreshKeywords = () => {
+    let tagName = keywords.map((item) => item.name);
     setRandomKeywords(
-      [...keywords].sort(() => Math.random() - 0.5).slice(0, 12),
+      [...tagName].sort(() => Math.random() - 0.5).slice(0, 12),
     );
   };
 
@@ -152,6 +163,7 @@ const StoreKeywordSearch = () => {
           <div className="hotHeaderWrap">
             <Title>인기 태그로 찾기</Title>
             <GrPowerReset onClick={refreshKeywords} />
+            <ReBtn onClick={deleteKeywords}>초기화</ReBtn>
           </div>
 
           <HotKeyword>

@@ -34,20 +34,19 @@ export const Title = styled.h2`
 `;
 const StoreList = () => {
   const searchKeyword = useRecoilValue(searchKeywordState);
-  const [result, setSearchResultsState] = useRecoilState(searchResultsState);
+  const [, setSearchResultsState] = useRecoilState(searchResultsState);
   const [userDataFavor, setUserDataFavor] = useState([]);
   const [member] = useRecoilState(memberState);
   const [, setKeywords] = useRecoilState(keywordsAtom);
-
-  const tagKeywordArr = () => {
-    let arr = [];
-    result.map((item) => {
-      return item.tagRestaurants.map((i) => {
-        return !arr.includes(i.tag.name) ? arr.push(i.tag.name) : null;
-      });
-    });
-    setKeywords(arr);
-  };
+  // const tagKeywordArr = () => {
+  //   let arr = [];
+  //   result.map((item) => {
+  //     return item.tagRestaurants.map((i) => {
+  //       return !arr.includes(i.tag.name) ? arr.push(i.tag.name) : null;
+  //     });
+  //   });
+  //   setKeywords(arr);
+  // };
 
   useEffect(() => {
     const encodedCategoryName = encodeURIComponent(searchKeyword);
@@ -57,13 +56,24 @@ const StoreList = () => {
           `/restaurants/search?keyword=${encodedCategoryName}`,
         );
         setSearchResultsState(refreshPageData.data);
-        tagKeywordArr();
         setUserDataFavor(member.favorites);
       } catch (error) {
         console.error("에러", error);
       }
     };
+
+    const tagsData = async () => {
+      try {
+        const tagData = await api.get(`/tags`);
+        setKeywords(tagData.data);
+        console.log(tagData.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     fetchData();
+    tagsData();
   }, []);
 
   return (
