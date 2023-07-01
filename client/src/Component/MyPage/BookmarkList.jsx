@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import BookmarkItem from "./BookmarkItem";
-import { api } from "../../Util/api";
 import styled from "styled-components";
 
 const Nonediv = styled.div`
@@ -25,8 +24,7 @@ const PrevBtn = styled.button`
   font-size: 15px;
 `;
 
-const BookmarkList = () => {
-  const [data, setData] = useState([]);
+const BookmarkList = ({ data, setData }) => {
   const [slice, setSlice] = useState([]);
   let [count, setCount] = useState(0);
 
@@ -36,22 +34,13 @@ const BookmarkList = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get("members/mypage");
-        console.log(response.data);
-        setData(response.data.favorites);
-        setSlice(response.data.favorites.slice(0, 6));
-      } catch (error) {
-        console.error("에러", error);
-      }
-    };
-    fetchData();
-  }, []);
+    setSlice(data.favorites.slice(0, 6));
+  }, [data]);
 
   return (
     <>
       <div>
+        {console.log(slice)}
         {data ? (
           slice.map((item, idx) => (
             <BookmarkItem

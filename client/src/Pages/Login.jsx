@@ -75,11 +75,11 @@ export default function Login() {
     email: "",
     password: "",
   });
+
   const navi = useNavigate();
 
-  const googleLogin = () => {
-    const google = `${process.env.REACT_APP_GOOGLE_API_URL}`;
-
+  const googleFunc = async () => {
+    const google = `${process.env.REACT_APP_GOOGLE_API_URL}?redirect_uri=http://localhost:3000/oauth2`;
     window.location.href = google;
   };
 
@@ -208,7 +208,7 @@ export default function Login() {
           </Btndiv>
         </Container>
         <Authdiv>
-          <Auth Btnstyle="google" onClick={googleLogin}>
+          <Auth Btnstyle="google" onClick={googleFunc}>
             구글로 로그인
           </Auth>
           <Auth Btnstyle="kakao">{/* <a href="#">카카오로 로그인</a> */}</Auth>

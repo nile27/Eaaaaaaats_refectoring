@@ -19,11 +19,11 @@ const Tilte = styled.div`
   padding-top: 57px;
 `;
 
-const BookmarkContainer = () => {
+const BookmarkContainer = ({ data, setData }) => {
   return (
     <Container>
       <Tilte>즐겨찾기 목록</Tilte>
-      <BookmarkList />
+      <BookmarkList data={data} setData={setData} />
     </Container>
   );
 };
