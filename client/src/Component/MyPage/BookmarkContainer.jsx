@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import BookmarkList from "./BookmarkList";
+import MystoreList from "./MystoreList";
 
 const Container = styled.div`
   width: 594px;
@@ -22,8 +23,17 @@ const Tilte = styled.div`
 const BookmarkContainer = ({ data, setData }) => {
   return (
     <Container>
-      <Tilte>즐겨찾기 목록</Tilte>
-      <BookmarkList data={data} setData={setData} />
+      {data.businessAccount ? (
+        <>
+          <Tilte>내 가게 목록</Tilte>
+          <MystoreList data={data} setData={setData} />
+        </>
+      ) : (
+        <>
+          <Tilte>즐겨찾기 목록</Tilte>
+          <BookmarkList data={data} setData={setData} />
+        </>
+      )}
     </Container>
   );
 };

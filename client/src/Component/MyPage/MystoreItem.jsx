@@ -30,9 +30,8 @@ const Content = styled.div`
   > .title {
     font-size: var(--medium-font);
   }
-  > .created_at {
+  > .streetAddress {
     font-size: var(--medium-font);
-    color: var(--black-350);
   }
 `;
 
@@ -52,27 +51,27 @@ const Condiv = styled.div`
   background: white;
 `;
 
-const MyReviewItem = ({
+const MystoreItem = ({
   setData,
   setSlice,
-  idx,
+  memberdata,
   data,
   count,
-  memberdata,
+  idx,
   setCount,
 }) => {
   const deleteFunc = (key) => {
-    if (window.confirm("리뷰를 삭제하시겠습니까?")) {
+    if (window.confirm(`${data[idx].restaurantName}가게를 삭제하시겠습니까?`)) {
       return api
-        .delete(`/reviews/${key}`)
+        .delete(`/restaurants/${key}`)
         .then(() => {
           setData({
             ...memberdata,
-            reviews: [
-              ...memberdata.reviews.slice(0, idx + count),
-              ...memberdata.reviews.slice(
+            restaurants: [
+              ...memberdata.restaurants.slice(0, idx + count),
+              ...memberdata.restaurants.slice(
                 idx + 1 + count,
-                memberdata.reviews.length,
+                memberdata.restaurants.length,
               ),
             ],
           });
@@ -85,17 +84,20 @@ const MyReviewItem = ({
 
   return (
     <Condiv>
-      <Link to={`/review/edit/${data[idx].restaurantId}/${data[idx].reviewId}`}>
+      <Link to={`/detail/${data.restaurantId}`}>
         <Container>
           <StoreName>{data[idx].restaurantName}</StoreName>
           <Content>
-            <div className="title">{data[idx].title}</div>
-            <div className="created_at">{data[idx].createdAt.slice(0, 10)}</div>
+            <div className="title">{data[idx].category}</div>
+            <div className="streetAddress">{data[idx].streetAddress}</div>
           </Content>
         </Container>
       </Link>
       <XContainer>
-        <button className="Btn" onClick={() => deleteFunc(data[idx].reviewId)}>
+        <button
+          className="Btn"
+          onClick={() => deleteFunc(data[idx].restaurantId)}
+        >
           <img src={XBtn} alt=""></img>
         </button>
       </XContainer>
@@ -103,4 +105,4 @@ const MyReviewItem = ({
   );
 };
 
-export default MyReviewItem;
+export default MystoreItem;

@@ -5,7 +5,7 @@
       "memberId": 1,
     "nickName": "tset",
     "email": "test1@test.com",
-    "businessAccount": true,
+    "businessAccount": false,
     "image": "https://main022.s3.ap-northeast-2.amazonaws.com/image/111%401114/image1111_iVBORw0KGgo.png",
     "reviews": [
         {
@@ -15,7 +15,80 @@
             "restaurantName": "bbq",
             "createdAt": "2023-05-21T01:03:46.323849",
             "modifiedAt": "2023-05-21T01:03:46.323849"
-        }
+        },
+        {
+          "reviewId": 2,
+          "restaurantId": 1,
+          "title": "제목",
+          "restaurantName": "bbq",
+          "createdAt": "2023-05-21T01:03:46.323849",
+          "modifiedAt": "2023-05-21T01:03:46.323849"
+      },
+      {
+        "reviewId": 3,
+        "restaurantId": 1,
+        "title": "제목",
+        "restaurantName": "bbq",
+        "createdAt": "2023-05-21T01:03:46.323849",
+        "modifiedAt": "2023-05-21T01:03:46.323849"
+      },
+      {
+        "reviewId": 4,
+        "restaurantId": 1,
+        "title": "제목",
+        "restaurantName": "bbq",
+        "createdAt": "2023-05-21T01:03:46.323849",
+        "modifiedAt": "2023-05-21T01:03:46.323849"
+      },
+      {
+        "reviewId": 5,
+        "restaurantId": 1,
+        "title": "제목",
+        "restaurantName": "bbq",
+        "createdAt": "2023-05-21T01:03:46.323849",
+        "modifiedAt": "2023-05-21T01:03:46.323849"
+      },
+      {
+        "reviewId": 6,
+        "restaurantId": 1,
+        "title": "제목",
+        "restaurantName": "bbq",
+        "createdAt": "2023-05-21T01:03:46.323849",
+        "modifiedAt": "2023-05-21T01:03:46.323849"
+      },
+      {
+        "reviewId": 7,
+        "restaurantId": 1,
+        "title": "제목",
+        "restaurantName": "bbq",
+        "createdAt": "2023-05-21T01:03:46.323849",
+        "modifiedAt": "2023-05-21T01:03:46.323849"
+    },
+    {
+      "reviewId": 8,
+      "restaurantId": 1,
+      "title": "제목",
+      "restaurantName": "bbq",
+      "createdAt": "2023-05-21T01:03:46.323849",
+      "modifiedAt": "2023-05-21T01:03:46.323849"
+    },
+    {
+      "reviewId": 9,
+      "restaurantId": 1,
+      "title": "제목",
+      "restaurantName": "bbq",
+      "createdAt": "2023-05-21T01:03:46.323849",
+      "modifiedAt": "2023-05-21T01:03:46.323849"
+    },
+    {
+      "reviewId": 10,
+      "restaurantId": 1,
+      "title": "제목",
+      "restaurantName": "bbq",
+      "createdAt": "2023-05-21T01:03:46.323849",
+      "modifiedAt": "2023-05-21T01:03:46.323849"
+  }
+
     ],
     "favorites": [
         {
@@ -27,7 +100,97 @@
             "category": "한식",
             "streetAddress": "맛집 도로명주소"
             
-        }
+        },
+        {
+          "favoriteId": 2,
+          "restaurantName": "bbq",
+          "memberId": 1,
+          "favoriteCount": 0,
+          "restaurantId": 1,
+          "category": "한식",
+          "streetAddress": "맛집 도로명주소"
+          
+      },
+      {
+        "favoriteId": 3,
+        "restaurantName": "bbq",
+        "memberId": 1,
+        "favoriteCount": 0,
+        "restaurantId": 1,
+        "category": "한식",
+        "streetAddress": "맛집 도로명주소"
+        
+    },
+    {
+      "favoriteId": 4,
+      "restaurantName": "bbq",
+      "memberId": 1,
+      "favoriteCount": 0,
+      "restaurantId": 1,
+      "category": "한식",
+      "streetAddress": "맛집 도로명주소"
+      
+  },
+  {
+    "favoriteId": 5,
+    "restaurantName": "bbq",
+    "memberId": 1,
+    "favoriteCount": 0,
+    "restaurantId": 1,
+    "category": "한식",
+    "streetAddress": "맛집 도로명주소"
+    
+},
+{
+  "favoriteId": 6,
+  "restaurantName": "bbq",
+  "memberId": 1,
+  "favoriteCount": 0,
+  "restaurantId": 1,
+  "category": "한식",
+  "streetAddress": "맛집 도로명주소"
+  
+},
+{
+  "favoriteId": 7,
+  "restaurantName": "bbq",
+  "memberId": 1,
+  "favoriteCount": 0,
+  "restaurantId": 1,
+  "category": "한식",
+  "streetAddress": "맛집 도로명주소"
+  
+},
+{
+  "favoriteId": 8,
+  "restaurantName": "bbq",
+  "memberId": 1,
+  "favoriteCount": 0,
+  "restaurantId": 1,
+  "category": "한식",
+  "streetAddress": "맛집 도로명주소"
+  
+},
+{
+  "favoriteId": 9,
+  "restaurantName": "bbq",
+  "memberId": 1,
+  "favoriteCount": 0,
+  "restaurantId": 1,
+  "category": "한식",
+  "streetAddress": "맛집 도로명주소"
+  
+},
+{
+  "favoriteId": 10,
+  "restaurantName": "bbq",
+  "memberId": 1,
+  "favoriteCount": 0,
+  "restaurantId": 1,
+  "category": "한식",
+  "streetAddress": "맛집 도로명주소"
+  
+}
     ],
     "favoriteCount": 0,
     "address": {
@@ -42,6 +205,75 @@
         "category": "중식",
         "detailAddress": "123",
         "restaurantId": 3,
+        "restaurantName": "테스트",
+        "streetAddress":"서울 강남구 테헤란로7길 32"
+      },
+      {
+        "category": "중식",
+        "detailAddress": "123",
+        "restaurantId": 4,
+        "restaurantName": "테스트",
+        "streetAddress":"서울 강남구 테헤란로7길 32"
+      },
+      {
+        "category": "중식",
+        "detailAddress": "123",
+        "restaurantId": 5,
+        "restaurantName": "테스트",
+        "streetAddress":"서울 강남구 테헤란로7길 32"
+      },
+      {
+        "category": "중식",
+        "detailAddress": "123",
+        "restaurantId": 6,
+        "restaurantName": "테스트",
+        "streetAddress":"서울 강남구 테헤란로7길 32"
+      },
+      {
+        "category": "중식",
+        "detailAddress": "123",
+        "restaurantId": 7,
+        "restaurantName": "테스트",
+        "streetAddress":"서울 강남구 테헤란로7길 32"
+      },
+      {
+        "category": "중식",
+        "detailAddress": "123",
+        "restaurantId": 8,
+        "restaurantName": "테스트",
+        "streetAddress":"서울 강남구 테헤란로7길 32"
+      },
+      {
+        "category": "중식",
+        "detailAddress": "123",
+        "restaurantId": 9,
+        "restaurantName": "테스트",
+        "streetAddress":"서울 강남구 테헤란로7길 32"
+      },
+      {
+        "category": "중식",
+        "detailAddress": "123",
+        "restaurantId": 10,
+        "restaurantName": "테스트",
+        "streetAddress":"서울 강남구 테헤란로7길 32"
+      },
+      {
+        "category": "중식",
+        "detailAddress": "123",
+        "restaurantId":11,
+        "restaurantName": "테스트",
+        "streetAddress":"서울 강남구 테헤란로7길 32"
+      },{
+        "category": "중식",
+        "detailAddress": "123",
+        "restaurantId": 12,
+        "restaurantName": "테스트",
+        "streetAddress":"서울 강남구 테헤란로7길 32"
+      },
+      {
+        "category": "중식",
+        "detailAddress": "123",
+        "restaurantId": 13,
         "restaurantName": "테스트",
         "streetAddress":"서울 강남구 테헤란로7길 32"
       }

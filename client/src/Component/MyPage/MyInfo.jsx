@@ -180,23 +180,12 @@ const TextArea = styled.input`
 `;
 
 const { kakao } = window;
-const MyInfo = () => {
+const MyInfo = ({ userData, setUserData }) => {
   const navigate = useNavigate();
 
   const [member, setMember] = useRecoilState(memberState);
   const [memberUpdate, setMemberUpdate] = useState(false);
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
-  const [userData, setUserData] = useState({
-    memberId: 0,
-    nickName: "",
-    email: "",
-    streetAddress: "",
-    detailAddress: "",
-    latitude: "",
-    longitude: "",
-    password: "",
-    businessAccount: false,
-  });
 
   const [patchData, setPatchData] = useState({
     nickName: "",
@@ -309,27 +298,6 @@ const MyInfo = () => {
       "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js?";
     script.async = true;
     document.body.appendChild(script);
-
-    const fetchUserData = async () => {
-      try {
-        const response = await api.get("members/mypage");
-        const { memberId, nickName, email, businessAccount, image } =
-          response.data;
-
-        setUserData({
-          memberId: memberId,
-          nickName: nickName,
-          password: response.data.password,
-          email: email,
-          location: response.data.address.streetAddress,
-          businessAccount: businessAccount,
-          image: image,
-        });
-      } catch (error) {
-        console.error("Failed to fetch user data:", error);
-      }
-    };
-    fetchUserData();
   }, []);
 
   useEffect(() => {

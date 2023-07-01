@@ -19,11 +19,11 @@ const Tilte = styled.div`
   padding-top: 57px;
 `;
 
-const MyReviewContainer = () => {
+const MyReviewContainer = ({ data, setData }) => {
   return (
     <Container>
       <Tilte>작성 리뷰 목록</Tilte>
-      <MyReviewList />
+      <MyReviewList data={data} setData={setData} />
     </Container>
   );
 };
