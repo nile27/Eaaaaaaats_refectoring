@@ -78,6 +78,7 @@ public class MemberService {
         if (!findMember.getEmail().equals(email)) throw new BusinessLogicException(ExceptionCode.UNAUTHORIZED_EDIT);
 
         Optional.ofNullable(member.getNickName()).ifPresent(name -> findMember.setNickName(name));
+        Optional.ofNullable(member.getBusinessAccount()).ifPresent(businessAccount -> findMember.setBusinessAccount(businessAccount));
         Optional.ofNullable(member.getPassword()).ifPresent(password -> {
             String encryptedPassword = passwordEncoder.encode(password);
             findMember.setPassword(encryptedPassword);

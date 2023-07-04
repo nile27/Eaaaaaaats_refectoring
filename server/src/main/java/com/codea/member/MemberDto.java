@@ -49,6 +49,7 @@ public class MemberDto {
         private String streetAddress;
         private double latitude;
         private double longitude;
+        private Boolean businessAccount;
 
         public void setMemberId(long memberId) {
             this.memberId = memberId;
