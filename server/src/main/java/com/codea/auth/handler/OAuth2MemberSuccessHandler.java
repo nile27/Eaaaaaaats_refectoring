@@ -41,7 +41,9 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         String email = String.valueOf(oAuth2User.getAttributes().get("email")); // OAuth2User 객체로부터 Resource Owner의 이메일 주소를 얻기
         String nickName = String.valueOf(oAuth2User.getAttributes().get("name")); // 이름을 얻기
         String image = String.valueOf(oAuth2User.getAttributes().get("picture")); // 프로필 이미지 URL을 얻기
-        if (image == null) image = (String) oAuth2User.getAttributes().get("profile_image");
+        if (email == null) email = String.valueOf(oAuth2User.getAttributes().get("profile_email")); //카카오
+        if (nickName == null) nickName = String.valueOf(oAuth2User.getAttributes().get("profile_nickname"));
+        if (image == null) image = String.valueOf(oAuth2User.getAttributes().get("profile_image"));
 
         List<String> roles = authorityUtils.createRoles(email);           // 권한 정보 생성
 
@@ -52,7 +54,7 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         } else {
             member = memberRepository.save(member);
         }
-
+        System.out.println(String.valueOf(oAuth2User.getAttributes().get("kakao_account")) + "   OAuth2 로그인 성공!" + String.valueOf(oAuth2User.getAttributes().get("email")));
         redirect(request, response, member, roles);  // Access Token과 Refresh Token을 생성해서 Frontend 애플리케이션에 전달하기 위해 Redirect
     }
 
@@ -119,10 +121,11 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
                 .newInstance()
                 .scheme("http")
           //      .host("ec2-13-125-232-30.ap-northeast-2.compute.amazonaws.com")
-                .host("main22.s3-website.ap-northeast-2.amazonaws.com")
-          //      .host("localhost")
-                .port(80)
-          //      .port(3000)
+//                .host("main22.s3-website.ap-northeast-2.amazonaws.com")
+//                .port(80)
+                .host("localhost")
+//                .port(8080)
+                .port(3000)
                 .path("oauth2")
                 .queryParams(queryParams)
                 .build()
