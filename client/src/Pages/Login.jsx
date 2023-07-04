@@ -79,8 +79,13 @@ export default function Login() {
   const navi = useNavigate();
 
   const googleFunc = async () => {
-    const google = `${process.env.REACT_APP_GOOGLE_API_URL}?redirect_uri=http://localhost:3000/oauth2`;
+    const google = `${process.env.REACT_APP_GOOGLE_API_URL}?redirect_uri=${process.env.REACT_APP_OAUTH_URL}/oauth2`;
     window.location.href = google;
+  };
+
+  const kakaoFunc = async () => {
+    const kakao = `${process.env.REACT_APP_KAKAO_OAUTH_URL}?redirect_uri=${process.env.REACT_APP_API_URL}/login/oauth2/code/kakao`;
+    window.location.href = kakao;
   };
 
   const handleInputValue = (key) => (e) => {
@@ -211,7 +216,9 @@ export default function Login() {
           <Auth Btnstyle="google" onClick={googleFunc}>
             구글로 로그인
           </Auth>
-          <Auth Btnstyle="kakao">{/* <a href="#">카카오로 로그인</a> */}</Auth>
+          <Auth Btnstyle="kakao" onClick={kakaoFunc}>
+            카카오로 로그인
+          </Auth>
         </Authdiv>
       </Main>
     </>
