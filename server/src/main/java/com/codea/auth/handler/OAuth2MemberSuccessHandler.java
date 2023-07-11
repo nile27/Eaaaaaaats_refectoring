@@ -53,6 +53,15 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
             Map<String, Object> profile = (Map<String, Object>)attributes.get("profile");
 
             email = String.valueOf(attributes.get("email"));
+//            if (email == "null") {
+//                https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=account_email
+//            }
+            System.out.println("카카오 정보 출력");
+            System.out.println(attributes);
+
+            System.out.println("카카오 전체 출력");
+            System.out.println((Map<String, Object>)oAuth2User.getAttributes());
+
             nickName = String.valueOf(profile.get("nickname"));
             image = String.valueOf(profile.get("profile_image_url"));
         } else {
