@@ -71,7 +71,7 @@ public class RestaurantController {
         AddressDto.Post addressDto = new AddressDto.Post(requestBody.getStreetAddress(), requestBody.getLatitude(), requestBody.getLongitude());
         Address address = addressMapper.addressPostDtoToAddress(addressDto);
 
-        String imageUrl = "http://projectmain.s3-website.ap-northeast-2.amazonaws.com/image/default_restaurant.png";
+        String imageUrl = "http://main22.s3-website.ap-northeast-2.amazonaws.com/image/default_restaurant.png";
         if (requestBody.getBase64Image() != null && requestBody.getImageName() != null && !(requestBody.getBase64Image().isEmpty()) && !(requestBody.getImageName().isEmpty())) {
             imageUrl = imageService.uploadImage(requestBody.getImageName(), requestBody.getBase64Image(), email);
         }

@@ -3,6 +3,8 @@ package com.codea.member;
 
 import com.codea.address.Address;
 import com.codea.favorite.FavoriteDto;
+import com.codea.restaurant.Restaurant;
+import com.codea.restaurant.RestaurantDto;
 import com.codea.review.ReviewDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -47,6 +49,7 @@ public class MemberDto {
         private String streetAddress;
         private double latitude;
         private double longitude;
+        private Boolean businessAccount;
 
         public void setMemberId(long memberId) {
             this.memberId = memberId;
@@ -67,6 +70,7 @@ public class MemberDto {
         private String image;
         private int favoriteCount;
         private Address address;
+        private List<RestaurantDto.MyPageResponse> restaurants;
     }
 
     @Getter

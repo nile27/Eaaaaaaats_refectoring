@@ -133,4 +133,5 @@ public class MemberController {
     public void logout(HttpServletRequest request, HttpServletResponse response) {
         memberDetailsService.logout(request, response);
     }
+
 }
