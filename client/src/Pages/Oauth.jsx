@@ -12,8 +12,7 @@ export default function Oauth() {
 
   useEffect(() => {
     let code = new URL(window.location.href);
-    let access =
-      code.searchParams.get("access_token") || code.searchParams.get("code");
+    let access = code.searchParams.get("access_token");
     sessionStorage.setItem("Authorization", "Bearer " + access);
 
     if (sessionStorage.getItem("Authorization")) {
@@ -32,27 +31,15 @@ export default function Oauth() {
               longitude: res.data.address.longitude,
               favorites: res.data.favorites,
             });
-            console.log(res.data);
             setIsLogin(!isLogin);
             navi("/");
           } else {
-            setMember({
-              ...member,
-              memberId: res.data.memberId,
-              email: res.data.email,
-              streetAddress: res.data.address.streetAddress,
-              businessAccount: res.data.businessAccount,
-              nickName: res.data.nickName,
-              latitude: res.data.address.latitude,
-              longitude: res.data.address.longitude,
-              favorites: res.data.favorites,
-            });
             navi("/oauth/signgin");
           }
         })
 
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     }
   }, []);

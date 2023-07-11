@@ -180,7 +180,7 @@ function OauthSign() {
         navi("/");
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
@@ -208,9 +208,6 @@ function OauthSign() {
     );
   }, [member.streetAddress]);
 
-  useEffect(() => {
-    console.log("member", member);
-  });
   return (
     <>
       <Main>

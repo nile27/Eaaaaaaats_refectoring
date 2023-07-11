@@ -41,7 +41,7 @@ const Review = () => {
       })
       .catch((err) => {
         alert("모든 내용을 입력하였는지 확인해주세요.");
-        console.log(err);
+        console.error(err);
       });
   };
   // 취소 버튼
@@ -50,7 +50,6 @@ const Review = () => {
   };
   return (
     <BasicContainer className="Basic-Container">
-      {console.log(res_id)}
       <ResInfo />
       <ReviewInfo reviewData={ReviewData} setReviewData={setReviewData} />
       <ButtonContainer className="Button-Container">

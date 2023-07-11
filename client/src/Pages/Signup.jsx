@@ -294,7 +294,7 @@ function Signup() {
         navi("/login");
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         if (err.response.status === 409) {
           setCheck({ ...Check, duplicationEmail: false });
         }

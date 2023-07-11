@@ -66,7 +66,6 @@ const StoreList = () => {
       try {
         const tagData = await api.get(`/tags`);
         setKeywords(tagData.data);
-        console.log(tagData.data);
       } catch (error) {
         console.error(error);
       }

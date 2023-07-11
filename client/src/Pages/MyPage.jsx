@@ -58,12 +58,11 @@ const MyPage = () => {
           favorites: res.data.favorites,
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   }, []);
 
   return (
     <Container>
-      {console.log(resdata)}
       <MyInfo userData={resdata} setUserData={setResData} />
       <RowBox>
         <MyReviewContainer data={resdata} setData={setResData} />

@@ -225,7 +225,7 @@ const MyInfo = ({ userData, setUserData }) => {
         sessionStorage.removeItem("IsLogin");
         navigate("/");
       })
-      .catch((err) => console.log("delete", err));
+      .catch((err) => console.error("delete", err));
   };
   const checkingFunc = () => {
     if (!patchData.nickName) {
@@ -278,7 +278,7 @@ const MyInfo = ({ userData, setUserData }) => {
         setMemberUpdate(!memberUpdate);
       })
       .catch((err) => {
-        console.log("patch error", err);
+        console.error("patch error", err);
       });
   };
 

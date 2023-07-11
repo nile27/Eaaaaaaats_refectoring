@@ -135,7 +135,7 @@ export default function Login() {
             });
           })
           .catch((err) => {
-            console.log(err);
+            console.error(err);
           });
       })
       .catch((err) => {
@@ -144,6 +144,9 @@ export default function Login() {
         }
         if (err.response.status === 405) {
           alert("이메일 혹은 비밀번호가 다릅니다.");
+        }
+        if (err.response.status === 500) {
+          alert("등록된 이메일 입니다.");
         }
       });
   }

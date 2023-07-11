@@ -66,7 +66,6 @@ const StoreHead = ({ data, setData }) => {
   };
 
   const deleteFunc = (a) => {
-    console.log(a);
     const filterArr = a.filter((item) => {
       return item.memberId === member.memberId ? item : null;
     });

@@ -179,7 +179,7 @@ const Header = () => {
             favorites: res.data.favorites,
           });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
     }
     navi(`/itemlist`);
   };

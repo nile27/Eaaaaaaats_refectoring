@@ -78,7 +78,7 @@ const MystoreItem = ({
           setSlice([...data.slice(0, idx), ...data.slice(idx + 1)]);
           setCount(0);
         })
-        .catch((err) => console.log("삭제", err));
+        .catch((err) => console.error("삭제", err));
     }
   };
 
