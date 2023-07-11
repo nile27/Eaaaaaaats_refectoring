@@ -58,7 +58,6 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
 //            }
             System.out.println("카카오 정보 출력");
             System.out.println(attributes);
-
             System.out.println("카카오 전체 출력");
             System.out.println((Map<String, Object>)oAuth2User.getAttributes());
 
