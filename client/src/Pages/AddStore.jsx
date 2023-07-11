@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import AddHeader from "../Component/AddStoreComp/AddHeader";
@@ -64,10 +64,6 @@ const AddStore = () => {
       alert("모든 내용을 입력했는지 확인해주세요.");
     }
   };
-
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
 
   const handleCancel = () => {
     setFormData(initFormData);

@@ -75,12 +75,17 @@ export default function Login() {
     email: "",
     password: "",
   });
+
   const navi = useNavigate();
 
-  const googleLogin = () => {
-    const google = `${process.env.REACT_APP_GOOGLE_API_URL}`;
-
+  const googleFunc = async () => {
+    const google = `${process.env.REACT_APP_GOOGLE_API_URL}?redirect_uri=${process.env.REACT_APP_OAUTH_URL}/oauth2`;
     window.location.href = google;
+  };
+
+  const kakaoFunc = async () => {
+    const kakao = `${process.env.REACT_APP_KAKAO_OAUTH_URL}?redirect_uri=${process.env.REACT_APP_API_URL}/login/oauth2/code/kakao`;
+    window.location.href = kakao;
   };
 
   const handleInputValue = (key) => (e) => {
@@ -130,7 +135,7 @@ export default function Login() {
             });
           })
           .catch((err) => {
-            console.log(err);
+            console.error(err);
           });
       })
       .catch((err) => {
@@ -139,6 +144,9 @@ export default function Login() {
         }
         if (err.response.status === 405) {
           alert("이메일 혹은 비밀번호가 다릅니다.");
+        }
+        if (err.response.status === 500) {
+          alert("등록된 이메일 입니다.");
         }
       });
   }
@@ -208,10 +216,12 @@ export default function Login() {
           </Btndiv>
         </Container>
         <Authdiv>
-          <Auth Btnstyle="google" onClick={googleLogin}>
+          <Auth Btnstyle="google" onClick={googleFunc}>
             구글로 로그인
           </Auth>
-          <Auth Btnstyle="kakao">{/* <a href="#">카카오로 로그인</a> */}</Auth>
+          <Auth Btnstyle="kakao" onClick={kakaoFunc}>
+            카카오로 로그인
+          </Auth>
         </Authdiv>
       </Main>
     </>

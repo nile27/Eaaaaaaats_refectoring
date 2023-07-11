@@ -1,4 +1,10 @@
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist({
+  key: "searchKeywordState",
+  storage: sessionStorage,
+});
 
 export const searchResultsState = atom({
   key: "searchResultsState",
@@ -13,6 +19,7 @@ export const searchDefaultState = atom({
 export const searchKeywordState = atom({
   key: "searchKeywordState",
   default: "",
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const searchInputState = atom({

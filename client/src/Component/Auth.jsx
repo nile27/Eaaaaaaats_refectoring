@@ -18,18 +18,17 @@ const StyleAuth = styled.button`
   height: 40px;
   box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
-
+  font-size: var(--medium-font);
+  color: black;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 15px;
   background-image: var(--img, url(${Google}));
   background-repeat: no-repeat;
   background-position: var(--posi, 25% center);
   background-color: var(--color, var(--white));
-  font-size: var(--small-font);
-
-  > a {
-    font-size: var(--medium-font);
-    color: black;
-  }
 `;
 
 function Auth({ Btnstyle, children, onClick }) {

@@ -8,6 +8,8 @@ import DetailPage from "../Pages/DetailPage";
 import MyPage from "../Pages/MyPage";
 import EditStore from "../Pages/EditStore";
 import EditReview from "../Pages/EditReview";
+import Oauth from "../Pages/Oauth";
+import Oauthsignin from "../Pages/OauthSignin";
 
 const RouteList = [
   {
@@ -49,6 +51,14 @@ const RouteList = [
   {
     path: "/editstore/:id",
     element: <EditStore />,
+  },
+  {
+    path: "/oauth2",
+    element: <Oauth />,
+  },
+  {
+    path: "/oauth/signgin",
+    element: <Oauthsignin />,
   },
 ];
 

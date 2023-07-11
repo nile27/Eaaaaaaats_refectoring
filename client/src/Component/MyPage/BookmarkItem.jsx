@@ -5,6 +5,7 @@ import XBtn from "../style/img/x.svg";
 import { useState } from "react";
 import { api } from "../../Util/api";
 import { useRecoilState } from "recoil";
+import { Link } from "react-router-dom";
 import memberState from "../../state/atoms/SignAtom";
 const Container = styled.div`
   border-bottom: 1px solid var(--black-350);
@@ -18,6 +19,7 @@ const StoreName = styled.div`
   font-size: var(--large-font);
   margin-top: 30px;
   margin-bottom: 10px;
+  color: black;
 `;
 
 const Content = styled.div`
@@ -50,28 +52,52 @@ const BtnDiv = styled.div`
   background: white;
 `;
 
-const BookmarkItem = ({ setData, data, setSlice, idx, setCount }) => {
+const BookmarkItem = ({
+  setData,
+  data,
+  setSlice,
+  idx,
+  setCount,
+  count,
+  memberdata,
+}) => {
   const [del, setDel] = useState(false);
   const [member, setMember] = useRecoilState(memberState);
   const deleteFunc = (key) => {
     return api
       .delete(`/favorites/${key}`)
       .then(() => {
-        api.get("/members/mypage").then((res) => {
-          setData(res.data.favorites);
-          setMember({ ...member, favorites: res.data.favorites });
-          setSlice(res.data.favorites.slice(0, 6));
+        setData({
+          ...memberdata,
+          favorites: [
+            ...memberdata.favorites.slice(0, idx + count),
+            ...memberdata.favorites.slice(
+              idx + 1 + count,
+              memberdata.favorites.length,
+            ),
+          ],
         });
+        setMember({
+          ...member,
+          favorites: [
+            ...member.favorites.slice(0, idx + count),
+            ...member.favorites.slice(idx + 1 + count, member.favorites.length),
+          ],
+        });
+        setSlice([...data.slice(0, idx), ...data.slice(idx + 1)]);
         setCount(0);
       })
-      .catch((err) => console.log(err));
+
+      .catch((err) => console.error(err));
   };
 
   return (
     <Container>
       {!del ? (
         <>
-          <StoreName>{data[idx].restaurantName}</StoreName>
+          <Link to={`/detail/${data.restaurantId}`}>
+            <StoreName>{data[idx].restaurantName}</StoreName>
+          </Link>
           <Content>
             <div className="area">{data[idx].streetAddress}</div>
             <div className="BtnDiv">
@@ -84,7 +110,9 @@ const BookmarkItem = ({ setData, data, setSlice, idx, setCount }) => {
         </>
       ) : (
         <>
-          <StoreName>{data[idx].restaurantName}</StoreName>
+          <Link to={`/detail/${data.restaurantId}`}>
+            <StoreName>{data[idx].restaurantName}</StoreName>
+          </Link>
           <Content>
             <div className="area">{data[idx].streetAddress}</div>
             <div className="BtnDiv">

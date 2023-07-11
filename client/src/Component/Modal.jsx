@@ -8,11 +8,10 @@ const Container = styled.div`
   width: auto;
   min-width: 600px;
   height: auto;
-  z-index: 99;
+  z-index: 80;
   position: absolute;
   top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 33%;
   background: #fefefe;
   border-radius: 10px;
   border: 1px solid var(--black-100);
@@ -20,28 +19,29 @@ const Container = styled.div`
 `;
 
 const ModalContainer = styled.button`
-  width: auto;
-  height: 200%;
+  width: 100%;
+  height: 100%;
   z-index: 90;
-
+  top: 30%;
+  left: 0px;
   position: absolute;
-  transform: translate(-50%, -50%);
   background-color: transparent;
+  overflow: hidden;
 `;
 
 const XBtn = styled.button`
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   background-color: transparent;
   background-image: url(${X});
   background-size: cover;
 `;
 const Hdiv = styled.div`
   width: 100%;
-  height: 30px;
+  height: 20px;
   display: flex;
   justify-content: right;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `;
 const Containerdiv = styled.div`
   width: auto;
@@ -56,18 +56,20 @@ export default function Modal({ menu, showModal }) {
 
   return (
     <>
-      <GlobalStyles posi="fixed" />
-      <ModalContainer onClick={showModal} />
-      <Container>
-        <Hdiv>
-          <XBtn onClick={showModal}></XBtn>
-        </Hdiv>
-        <Containerdiv>
-          {leng.map((item, idx) => {
-            return <List menu={menu} i={item * 10} key={idx} />;
-          })}
-        </Containerdiv>
-      </Container>
+      <GlobalStyles top="0" overflow="hidden" />
+      {window.scrollTo({ top: 300 })}
+      <ModalContainer onClick={showModal}>
+        <Container>
+          <Hdiv>
+            <XBtn onClick={showModal}></XBtn>
+          </Hdiv>
+          <Containerdiv>
+            {leng.map((item, idx) => {
+              return <List menu={menu} i={item * 10} key={idx} />;
+            })}
+          </Containerdiv>
+        </Container>
+      </ModalContainer>
     </>
   );
 }

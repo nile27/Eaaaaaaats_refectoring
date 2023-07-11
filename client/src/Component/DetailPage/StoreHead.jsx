@@ -82,8 +82,15 @@ const StoreHead = ({ data, setData }) => {
       }
       if (!heartIcon) {
         await api.post(`/favorites/restaurant/${data.restaurantId}`);
+        const response = await api.get(
+          `/restaurants/${data.restaurantId}/detail`,
+        );
         const res = await api.get(`members/mypage`);
-        setData({ ...data, totalFavorite: data.totalFavorite + 1 });
+        setData({
+          ...data,
+          totalFavorite: data.totalFavorite + 1,
+          favorites: response.data.favorites,
+        });
         setMember({ ...member, favorites: res.data.favorites });
       } else {
         const endpoint = deleteFunc(data.favorites);
