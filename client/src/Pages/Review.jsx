@@ -41,7 +41,7 @@ const Review = () => {
       })
       .catch((err) => {
         alert("모든 내용을 입력하였는지 확인해주세요.");
-        console.log(err);
+        console.error(err);
       });
   };
   // 취소 버튼

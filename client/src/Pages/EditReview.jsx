@@ -55,7 +55,7 @@ const EditReview = () => {
         navi(-1);
       })
       .catch((err) => {
-        console.log(`${err} 에러가 발생함`);
+        console.error(`${err} 에러가 발생함`);
       });
   };
   //리뷰 삭제 버튼
@@ -67,7 +67,7 @@ const EditReview = () => {
         alert("리뷰가 삭제되었습니다.");
         navi(-1);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
   };

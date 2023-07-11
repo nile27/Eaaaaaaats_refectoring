@@ -133,7 +133,7 @@ const Hotlist = () => {
   const randomItems = getRandomItems(filterData, 8);
 
   const MoreHotList = () => {
-    navi(`/itemlist?serch=${local}`);
+    navi(`/itemlist?serch=`);
   };
 
   return (

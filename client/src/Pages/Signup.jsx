@@ -150,6 +150,7 @@ function Signup() {
     streetAddress: true,
     detali: true,
     duplicationEmail: true,
+    dupPw: true,
   });
 
   const errMsg = [
@@ -159,6 +160,7 @@ function Signup() {
     "* 지역을 선택해주세요.",
     "* 중복된 이메일 입니다.",
     "* 상세 지역을 입력해주세요.",
+    "* 비밀번호는 8자리 이상입니다.",
   ];
 
   const handleInputValue = (key) => (e) => {
@@ -204,6 +206,7 @@ function Signup() {
         password: true,
         streetAddress: true,
         duplicationEmail: true,
+        dupPw: true,
       });
       return;
     }
@@ -216,14 +219,25 @@ function Signup() {
         password: true,
         streetAddress: true,
         duplicationEmail: true,
+        dupPw: true,
       });
       return;
     }
-    if (
-      member.password.length < 8 ||
-      pwCheck !== member.password ||
-      !member.password
-    ) {
+    if (member.password.length < 8 || !member.password) {
+      setCheck({
+        ...Check,
+        password: true,
+        email: true,
+        username: true,
+        streetAddress: true,
+        duplicationEmail: true,
+        detali: true,
+        dupPw: false,
+      });
+      return;
+    }
+
+    if (pwCheck !== member.password) {
       setCheck({
         ...Check,
         password: false,
@@ -232,9 +246,11 @@ function Signup() {
         streetAddress: true,
         duplicationEmail: true,
         detali: true,
+        dupPw: true,
       });
       return;
     }
+
     if (!Address.address) {
       setCheck({
         ...Check,
@@ -244,6 +260,7 @@ function Signup() {
         detali: true,
         username: true,
         duplicationEmail: true,
+        dupPw: true,
       });
       return;
     }
@@ -256,6 +273,7 @@ function Signup() {
         detali: false,
         username: true,
         duplicationEmail: true,
+        dupPw: true,
       });
       return;
     }
@@ -276,7 +294,7 @@ function Signup() {
         navi("/login");
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         if (err.response.status === 409) {
           setCheck({ ...Check, duplicationEmail: false });
         }
@@ -370,6 +388,11 @@ function Signup() {
             placeholder="password"
             onChange={handleInputValue("password")}
           />
+          {!Check.dupPw ? (
+            <Errdiv>
+              <Errspan>{errMsg[6]}</Errspan>
+            </Errdiv>
+          ) : null}
         </Textdiv>
         <Textdiv>
           <P>비밀번호 확인</P>

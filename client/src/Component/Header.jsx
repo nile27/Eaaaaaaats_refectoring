@@ -101,6 +101,11 @@ const Frameicon = styled.img`
   width: 17px;
   height: 17px;
   margin: 0px 5px;
+  @media screen and (max-width: 840px) {
+    width: 0;
+    flex-grow: 0;
+    background-image: none;
+  }
 `;
 
 const Header = () => {
@@ -161,11 +166,11 @@ const Header = () => {
   };
 
   const handleLinkStoreList = () => {
+    setSearchKeywordState("");
     if (sessionStorage.getItem("Authorization")) {
       api
         .get("/members/mypage")
         .then((res) => {
-          setMember(res.data);
           setMember({
             ...member,
             streetAddress: res.data.address.streetAddress,
@@ -174,9 +179,8 @@ const Header = () => {
             favorites: res.data.favorites,
           });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
     }
-    setSearchKeywordState("");
     navi(`/itemlist`);
   };
   return (

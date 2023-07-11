@@ -50,7 +50,7 @@ const AddStore = () => {
       longitude: "",
     },
   ];
-  const [formData, setFormData] = useState(initFormData);
+  const [formData, setFormData] = useState(initFormData[0]);
 
   const postFormData = async () => {
     try {

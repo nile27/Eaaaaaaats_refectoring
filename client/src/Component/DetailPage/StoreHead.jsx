@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ImgBtn from "../style/ImgBtn";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import memberState from "../../state/atoms/SignAtom";
 import { api } from "../../Util/api";
@@ -44,37 +44,17 @@ const SubInfo = styled.div`
   }
 `;
 
-const StoreHead = () => {
-  const { res_id } = useParams();
-
+const StoreHead = ({ data, setData }) => {
   const navigate = useNavigate();
   const [member, setMember] = useRecoilState(memberState);
 
   const [heartIcon, setHeartIcon] = useState(false);
   const [shareIcon, setShareIcon] = useState(false);
 
-  const [data, setData] = useState({
-    restaurantName: "",
-    tagRestaurants: [],
-    total_views: 0,
-    totalFavorite: 0,
-  });
-
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get(`/restaurants/${res_id}/detail`);
-        const data = response.data;
-        setData(data);
-        if (!heartFunc(response.data.favorites)) {
-          setHeartIcon(!heartIcon);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
+    if (!heartFunc(data.favorites)) {
+      setHeartIcon(!heartIcon);
+    }
   }, []);
 
   const heartFunc = (b) => {
@@ -100,37 +80,31 @@ const StoreHead = () => {
         navigate("/login");
         return;
       }
-      if (!heartIcon && member.memberId) {
+      if (!heartIcon) {
         await api.post(`/favorites/restaurant/${data.restaurantId}`);
-        const response = await api.get(`/restaurants/${res_id}`);
+        const response = await api.get(
+          `/restaurants/${data.restaurantId}/detail`,
+        );
         const res = await api.get(`members/mypage`);
-
-        const postData = response.data;
-        setData(postData);
-        setMember(res.data);
-        setMember({
-          ...member,
-          streetAddress: res.data.address.streetAddress,
-          latitude: res.data.address.latitude,
-          longitude: res.data.address.longitude,
-          favorites: res.data.favorites,
+        setData({
+          ...data,
+          totalFavorite: data.totalFavorite + 1,
+          favorites: response.data.favorites,
         });
+        setMember({ ...member, favorites: res.data.favorites });
       } else {
         const endpoint = deleteFunc(data.favorites);
         await api.delete(`/favorites/${endpoint}`);
-        const response1 = await api.get(`/restaurants/${res_id}`);
         const res = await api.get(`members/mypage`);
-        const deleteData = response1.data;
-        setData(deleteData);
-
-        setMember(res.data);
-        setMember({
-          ...member,
-          streetAddress: res.data.address.streetAddress,
-          latitude: res.data.address.latitude,
-          longitude: res.data.address.longitude,
-          favorites: res.data.favorites,
+        const response = await api.get(
+          `/restaurants/${data.restaurantId}/detail`,
+        );
+        setData({
+          ...data,
+          totalFavorite: data.totalFavorite - 1,
+          favorites: response.data.favorites,
         });
+        setMember({ ...member, favorites: res.data.favorites });
       }
       setHeartIcon(!heartIcon);
     } catch (error) {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import BookmarkItem from "./BookmarkItem";
+import MystoreItem from "./MystoreItem";
 import styled from "styled-components";
 
 const Nonediv = styled.div`
@@ -30,11 +30,11 @@ const BookmarkList = ({ data, setData }) => {
 
   const Pagenation = (count) => {
     setCount(count);
-    setSlice(data.favorites.slice(count, count + 6));
+    setSlice(data.restaurants.slice(count, count + 6));
   };
 
   useEffect(() => {
-    setSlice(data.favorites.slice(0, 6));
+    setSlice(data.restaurants.slice(0, 6));
   }, [data]);
 
   return (
@@ -42,26 +42,26 @@ const BookmarkList = ({ data, setData }) => {
       <div>
         {data ? (
           slice.map((item, idx) => (
-            <BookmarkItem
-              key={item.favoriteId}
+            <MystoreItem
+              key={item.restaurantId}
               idx={idx}
               memberdata={data}
               data={slice}
-              setSlice={setSlice}
               count={count}
+              setSlice={setSlice}
               setCount={setCount}
               setData={setData}
             />
           ))
         ) : (
-          <Nonediv>등록된 즐겨찾기가 없습니다.</Nonediv>
+          <Nonediv>등록된 가게가 없습니다.</Nonediv>
         )}
       </div>
       <Pagediv>
         {count > 0 ? (
           <PrevBtn onClick={() => Pagenation((count -= 6))}>이전</PrevBtn>
         ) : null}
-        {count + 6 < data.favorites.length ? (
+        {count + 6 < data.restaurants.length ? (
           <PrevBtn onClick={() => Pagenation((count += 6))}>다음</PrevBtn>
         ) : null}
       </Pagediv>

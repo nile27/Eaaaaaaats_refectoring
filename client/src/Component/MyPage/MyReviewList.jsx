@@ -1,6 +1,5 @@
 import MyReviewItem from "./MyReviewItem";
 import { useEffect, useState } from "react";
-import { api } from "../../Util/api";
 import styled from "styled-components";
 
 const Nonediv = styled.div`
@@ -23,28 +22,18 @@ const PrevBtn = styled.button`
   font-size: 15px;
 `;
 
-const MyReviewList = () => {
-  const [data, setData] = useState([]);
+const MyReviewList = ({ data, setData }) => {
   const [slice, setSlice] = useState([]);
   let [count, setCount] = useState(0);
 
   const Pagenation = (count) => {
     setCount(count);
-    setSlice(data.slice(count, count + 6));
+    setSlice(data.reviews.slice(count, count + 6));
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get("/members/mypage");
-        setData(response.data.reviews);
-        setSlice(response.data.reviews.slice(0, 6));
-      } catch (error) {
-        console.error("마이리뷰에러", error);
-      }
-    };
-    fetchData();
-  }, []);
+    setSlice(data.reviews.slice(0, 6));
+  }, [data]);
 
   return (
     <>
@@ -54,7 +43,9 @@ const MyReviewList = () => {
             <MyReviewItem
               key={item.reviewId}
               idx={idx}
-              review={slice}
+              data={slice}
+              count={count}
+              memberdata={data}
               setSlice={setSlice}
               setCount={setCount}
               setData={setData}
@@ -68,7 +59,7 @@ const MyReviewList = () => {
         {count > 0 ? (
           <PrevBtn onClick={() => Pagenation((count -= 6))}>이전</PrevBtn>
         ) : null}
-        {count + 6 < data.length ? (
+        {count + 6 < data.reviews.length ? (
           <PrevBtn onClick={() => Pagenation((count += 6))}>다음</PrevBtn>
         ) : null}
       </Pagediv>

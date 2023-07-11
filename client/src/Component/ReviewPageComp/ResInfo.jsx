@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+
+import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import ImgBtn from "../style/ImgBtn";
-import memberState from "../../state/atoms/SignAtom";
-import { api } from "../../Util/api";
+
+import { reviewHeader } from "../../state/atoms/ReviewHeader";
 
 const RestaurantContainer = styled.div`
   width: 100%;
@@ -48,38 +47,7 @@ const RestaurantContainer = styled.div`
 `;
 
 const ResInfo = () => {
-  const { res_id } = useParams();
-  const [resInfo, setresInfo] = useState({});
-  const userData = useRecoilValue(memberState);
-  useEffect(() => {
-    const fetchRestaurant = async () => {
-      try {
-        const res = await api.get(`/restaurants/${res_id}`);
-        setresInfo(res.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchRestaurant();
-  }, [res_id]);
-
-  const isFavorite = userData.favorites.some(
-    (favorites) => favorites.restaurantId === parseInt(res_id),
-  );
-  const handleShareIcon = async () => {
-    const link = window.location.href;
-    try {
-      if (navigator.clipboard) {
-        await navigator.clipboard.writeText(link);
-        alert("링크가 복사되었습니다.");
-      } else {
-        alert("이 브라우저에서는 링크 복사를 지원하지 않습니다.");
-      }
-    } catch (error) {
-      alert("링크 복사에 실패했습니다.");
-      console.error("링크 복사 오류:", error);
-    }
-  };
+  const resInfo = useRecoilValue(reviewHeader);
 
   return (
     <RestaurantContainer className="restaurant-Container">
@@ -94,20 +62,7 @@ const ResInfo = () => {
           ))}
         </ul>
       </div>
-      <div className="res-sosial">
-        <div className="imgBtn">
-          <ImgBtn imgstyle="View" />
-          <span>{resInfo.total_views}</span>
-        </div>
-        <div className="imgBtn">
-          <ImgBtn imgstyle={isFavorite ? "HeartActive" : "Heart"} />
-          <span>{resInfo.totalFavorite}</span>
-        </div>
-
-        <div className="imgBtn">
-          <ImgBtn imgstyle="Share" onClick={handleShareIcon} />
-        </div>
-      </div>
+      <div className="res-sosial"></div>
     </RestaurantContainer>
   );
 };

@@ -4,8 +4,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { reviewDataAtom } from "../../state/atoms/reviewDataAtom";
-import { api } from "../../Util/api";
-import { useParams } from "react-router-dom";
+
 const ReviewListContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,7 +23,6 @@ const ReviewList = ({ data }) => {
   const [allReviews, setAllReviews] = useState(false);
   const [showButton, setShowButton] = useState(true);
 
-  const { res_id } = useParams();
   useEffect(() => {
     setDisplayData(data);
   }, [data]);
@@ -36,18 +34,6 @@ const ReviewList = ({ data }) => {
       setShowButton(true);
     }
   }, [allReviews, displayData]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get(`/restaurants/${res_id}/detail`);
-        setReviewData(response.data.reviews);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
 
   const showReview = allReviews ? displayData : displayData.slice(0, 5);
 
