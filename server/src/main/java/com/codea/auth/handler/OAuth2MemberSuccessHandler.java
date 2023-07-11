@@ -8,6 +8,7 @@ import com.codea.common.exception.ExceptionCode;
 import com.codea.member.Member;
 import com.codea.member.MemberRepository;
 import com.codea.member.MemberService;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -41,9 +42,17 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         String email = String.valueOf(oAuth2User.getAttributes().get("email")); // OAuth2User 객체로부터 Resource Owner의 이메일 주소를 얻기
         String nickName = String.valueOf(oAuth2User.getAttributes().get("name")); // 이름을 얻기
         String image = String.valueOf(oAuth2User.getAttributes().get("picture")); // 프로필 이미지 URL을 얻기
-        if (email == null) email = String.valueOf(oAuth2User.getAttributes().get("profile_email")); //카카오
-        if (nickName == null) nickName = String.valueOf(oAuth2User.getAttributes().get("profile_nickname"));
-        if (image == null) image = String.valueOf(oAuth2User.getAttributes().get("profile_image"));
+
+        if (email == "null") { //카카오  null이 왜... 문자열이지..?
+            Map<String, Object> attributes = (Map<String, Object>)oAuth2User.getAttributes().get("kakao_account");
+            Map<String, Object> profile = (Map<String, Object>)attributes.get("profile");
+
+            email = String.valueOf(attributes.get("email"));
+            nickName = String.valueOf(profile.get("nickname"));
+            image = String.valueOf(profile.get("profile_image_url"));
+
+            System.out.println(String.valueOf(attributes.get("email")) + "카카오 로그인 성공!");
+        };
 
         List<String> roles = authorityUtils.createRoles(email);           // 권한 정보 생성
 
@@ -54,7 +63,7 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         } else {
             member = memberRepository.save(member);
         }
-        System.out.println(String.valueOf(oAuth2User.getAttributes().get("kakao_account")) + "   OAuth2 로그인 성공!" + String.valueOf(oAuth2User.getAttributes().get("email")));
+
         redirect(request, response, member, roles);  // Access Token과 Refresh Token을 생성해서 Frontend 애플리케이션에 전달하기 위해 Redirect
     }
 
@@ -120,12 +129,12 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         return UriComponentsBuilder
                 .newInstance()
                 .scheme("http")
-          //      .host("ec2-13-125-232-30.ap-northeast-2.compute.amazonaws.com")
-//                .host("main22.s3-website.ap-northeast-2.amazonaws.com")
-//                .port(80)
-                .host("localhost")
+//                .host("ec2-13-125-232-30.ap-northeast-2.compute.amazonaws.com")
+                .host("main22.s3-website.ap-northeast-2.amazonaws.com")
+                .port(80)
+//                .host("localhost")
 //                .port(8080)
-                .port(3000)
+//                .port(3000)
                 .path("oauth2")
                 .queryParams(queryParams)
                 .build()
