@@ -45,14 +45,18 @@ const DetailPage = () => {
   });
 
   useEffect(() => {
-    api
-      .get(`/restaurants/${res_id}/detail`)
-      .then((res) => {
+    const fetchReviewData = async () => {
+      try {
+        const res = await api.get(`/restaurants/${res_id}/detail`);
         setData(res.data);
         setReviewData(res.data.reviews);
         setReviewHeader(res.data);
-      })
-      .catch((err) => console.error(err));
+      } catch (error) {
+        alert("데이터를 가져오는데 실패하였습니다.");
+        console.error(error);
+      }
+    };
+    fetchReviewData();
   }, []);
 
   return (

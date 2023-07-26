@@ -39,7 +39,6 @@ const AddExplanation = ({ formData, setFormData }) => {
         onChange={onInputChange}
         type="text"
         placeholder="가게 소개글을 입력해주세요"
-        maxLength="1000"
       />
     </AddInfoWrap>
   );

@@ -95,8 +95,8 @@ export default function KakaoMap() {
     streetAddress: "",
     open_time: "",
     tel: "",
-    latitude: 0,
-    longitude: 0,
+    latitude: 37.500722082344,
+    longitude: 127.030768815378,
   });
   const markerdata = useRecoilValue(RestaurantState);
   const memberData = useRecoilValue(memberState);
@@ -144,7 +144,7 @@ export default function KakaoMap() {
       );
     });
 
-    function makeOverListener(map, marker, infowindow) {
+    function makeOverListener(infowindow) {
       return function () {
         filterFunc(infowindow);
       };
