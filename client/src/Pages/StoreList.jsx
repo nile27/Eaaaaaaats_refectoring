@@ -8,6 +8,7 @@ import {
   searchResultsState,
   searchKeywordState,
 } from "../state/atoms/SearchStateAtom";
+
 import { keywordsAtom } from "../state/atoms/keywordsAtom";
 import memberState from "../state/atoms/SignAtom";
 import { api } from "../Util/api";
@@ -37,16 +38,8 @@ const StoreList = () => {
   const [, setSearchResultsState] = useRecoilState(searchResultsState);
   const [userDataFavor, setUserDataFavor] = useState([]);
   const [member] = useRecoilState(memberState);
-  const [, setKeywords] = useRecoilState(keywordsAtom);
-  // const tagKeywordArr = () => {
-  //   let arr = [];
-  //   result.map((item) => {
-  //     return item.tagRestaurants.map((i) => {
-  //       return !arr.includes(i.tag.name) ? arr.push(i.tag.name) : null;
-  //     });
-  //   });
-  //   setKeywords(arr);
-  // };
+  const [randomKeywords, setRandomKeywords] = useState([]);
+  const [keywords, setKeywords] = useRecoilState(keywordsAtom);
 
   useEffect(() => {
     const encodedCategoryName = encodeURIComponent(searchKeyword);
@@ -55,30 +48,39 @@ const StoreList = () => {
         const refreshPageData = await api.get(
           `/restaurants/search?keyword=${encodedCategoryName}`,
         );
+        const tagData = await api.get(`/tags`);
+        setKeywords(tagData.data);
         setSearchResultsState(refreshPageData.data);
         setUserDataFavor(member.favorites);
+        setRandomKeywords(
+          tagData.data
+            .map((item) => item.name)
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 12),
+        );
       } catch (error) {
         console.error("에러", error);
       }
     };
-
-    const tagsData = async () => {
-      try {
-        const tagData = await api.get(`/tags`);
-        setKeywords(tagData.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     fetchData();
-    tagsData();
   }, []);
+
+  const refreshKeywords = () => {
+    let tagName = keywords
+      .map((item) => item.name)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 12);
+    setRandomKeywords(tagName);
+    return tagName;
+  };
 
   return (
     <>
       <StoreListWrap>
-        <StoreKeywordSearch />
+        <StoreKeywordSearch
+          refreshKeywords={refreshKeywords}
+          randomKeywords={randomKeywords}
+        />
         <StoreMainWrap>
           <StoreKeywordResult
             userDataFavor={userDataFavor}

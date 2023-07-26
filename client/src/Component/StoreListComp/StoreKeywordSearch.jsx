@@ -3,9 +3,10 @@ import styled from "styled-components";
 import Input from "../style/StyleInput";
 import Button from "../style/StyleButton";
 import Slider from "./Slider";
+
 import { Title } from "../../Pages/StoreList";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { keywordsAtom } from "../../state/atoms/keywordsAtom";
+import { useSetRecoilState } from "recoil";
+//import { keywordsAtom } from "../../state/atoms/keywordsAtom";
 import { GrPowerReset } from "react-icons/gr";
 import { searchInputState } from "../../state/atoms/SearchStateAtom";
 
@@ -110,15 +111,14 @@ const HotKeyword = styled.div`
   gap: 8px;
 `;
 
-const StoreKeywordSearch = () => {
+const StoreKeywordSearch = ({ refreshKeywords, randomKeywords }) => {
   const [searchTagInput, setSearchInput] = useState("");
-  const [randomKeywords, setRandomKeywords] = useState([]);
+
   const setSearchInputState = useSetRecoilState(searchInputState);
-  const [keywords] = useRecoilState(keywordsAtom);
 
   useEffect(() => {
     setSearchInputState("");
-    refreshKeywords();
+    console.log(randomKeywords);
   }, []);
 
   const handleFormSubmit = (event) => {
@@ -133,13 +133,6 @@ const StoreKeywordSearch = () => {
   const handleKeywordClick = (keyword) => {
     setSearchInputState(keyword);
     setSearchInput(keyword);
-  };
-
-  const refreshKeywords = () => {
-    let tagName = keywords.map((item) => item.name);
-    setRandomKeywords(
-      [...tagName].sort(() => Math.random() - 0.5).slice(0, 12),
-    );
   };
 
   const deleteKeywords = () => {
