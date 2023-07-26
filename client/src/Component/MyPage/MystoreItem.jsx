@@ -84,7 +84,7 @@ const MystoreItem = ({
 
   return (
     <Condiv>
-      <Link to={`/detail/${data.restaurantId}`}>
+      <Link to={`/detail/${data[idx].restaurantId}`}>
         <Container>
           <StoreName>{data[idx].restaurantName}</StoreName>
           <Content>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import AddHeader from "../Component/AddStoreComp/AddHeader";
@@ -33,24 +33,22 @@ const AddBtnWrap = styled.div`
 `;
 const AddStore = () => {
   const history = useNavigate();
-  const initFormData = [
-    {
-      restaurantName: "",
-      tag: [],
-      imageName: null,
-      base64Image: null,
-      content: "",
-      tel: "",
-      category: "",
-      open_time: "",
-      menu: [],
-      streetAddress: "",
-      detailAddress: "",
-      latitude: "",
-      longitude: "",
-    },
-  ];
-  const [formData, setFormData] = useState(initFormData[0]);
+  const initFormData = {
+    restaurantName: "",
+    tag: [],
+    imageName: null,
+    base64Image: null,
+    content: "",
+    tel: "",
+    category: "",
+    open_time: "",
+    menu: [],
+    streetAddress: "",
+    detailAddress: "",
+    latitude: "",
+    longitude: "",
+  };
+  const [formData, setFormData] = useState(initFormData);
 
   const postFormData = async () => {
     try {
@@ -69,6 +67,11 @@ const AddStore = () => {
     setFormData(initFormData);
     history(-1);
   };
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
   return (
     <AddContainer>
       <AddHeader formData={formData} setFormData={setFormData} />

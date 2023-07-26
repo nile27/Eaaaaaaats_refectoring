@@ -42,8 +42,7 @@ const EditStore = () => {
   const initFormData = {
     restaurantName: "",
     tag: null,
-    imageName: null,
-    base64Image: null,
+
     content: "",
     tel: "",
     category: "",
@@ -67,6 +66,10 @@ const EditStore = () => {
     };
     fetchRestaurant();
   }, []);
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
 
   const patchFormData = async () => {
     try {
