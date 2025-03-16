@@ -12,10 +12,7 @@
 
 <table>	
 	<tr>
-		<th colspan="2">
-		
-		</th>
-	</tr>
+			</tr>
  <tr>
     <th>
       회원 가입 페이지
